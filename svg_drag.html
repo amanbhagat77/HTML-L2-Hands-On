@@ -1,0 +1,132 @@
+<html>
+    <title>
+        SVG DRAG AND DROP
+    </title>
+    <head>
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+
+            }            
+            </script>
+            <style>
+            #container{
+                text-align: center;
+                margin: 10% 20% 0 20%;
+                background: #40a8c4;
+                padding: 5px;
+                font-family: Arial, Helvetica, sans-serif;
+                top: 100px;
+            }
+            #SVGs{
+                width:100px;
+                height:100px;
+                margin: 20px 0 0 350px;
+                position:relative;
+    
+            }
+            .sec1{
+                width:100px;
+                height:100px;
+                position:absolute;
+                top:0;
+                left:0;
+            }
+            .sec1 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 5px;
+            left: 350px;
+            }
+            .overlap {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 2px;
+            left: 0;
+            z-index: 10;
+        }
+        </style>
+           
+    </head>
+    <body>
+        <section id ="container">
+            <h1 style="text-align: center;">HTML5 L2 HANDS ON ASSIGNMENT</h1>
+            <section id="SVGs">
+        
+                    <section class="sec2">
+                    <svg width="100" height="100">
+        
+                        <circle id="abc" cx="50" cy="50" r="45" stroke="yellow" fill="yellow">
+                        </circle>
+                    </svg>
+                    </section>
+                    <section class="sec1">
+                        <svg width="100" height="100">
+                            <circle cx="50" cy="50" r="45" stroke="green" fill="green"></circle>
+                        </svg>
+                        <section id="overlap" class="overlap" ondrop="drop(event)" ondragover="allowDrop(event)"></section>
+                    </section>
+                    <section id="overlap" class="overlap" ondrop="drop(event)" ondragover="allowDrop(event)"></section>
+                    <br /><br />
+        
+                </section>
+        
+               <br/><br/>
+            
+               <section>
+                       <p> <strong>Drag the gif image to the SVG circles above.</strong><br>
+               </p>
+               <img id="drg1" alt="Check Internet Connection"src="https://i.gifer.com/52O8.gif" draggable="true" ondragstart="drag(event)" width="100" height="100"/>
+               </section>
+               <p id="demo">
+               </p>
+               <script>
+                   var x = document.getElementById("demo");
+            var LatitudeArr = [];
+            var LongitudeArr = [];
+            function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(addPosition);
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function addPosition(position) {
+                var currLat = position.coords.latitude;
+                var currLong = position.coords.longitude;
+  
+            if(localStorage.getItem("Latitude") == currLat && localStorage.getItem("Longitude") == currLong){
+                console.log("hi2")
+                x.innerHTML = "Latitude: " + position.coords.latitude + 
+                "<br>Longitude: " + position.coords.longitude;
+                }
+            else {
+                localStorage.setItem("Latitude" , currLat);
+                localStorage.setItem("Longitude" , currLong);
+                }
+                console.log(localStorage.getItem("Latitude"));
+                console.log(localStorage.getItem("Longitude"));
+                }
+                window.onload(getLocation());
+               </script>
+               <p>
+                <strong>Submitted By Aman Bhagat</strong><br>
+                <strong>Employe Id: 20104447</strong>
+               </p>
+            </section>   
+            
+    </body>
+</html>
